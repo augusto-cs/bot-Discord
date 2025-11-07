@@ -44,4 +44,4 @@ async def on_member_join(membro: discord.Member):
     embed_boas_vindas.set_thumbnail(url=membro.avatar.url)
     await canal_boas_vindas.send(embed=embed_boas_vindas)
     
-bot.run("MTQzNDY5MTI1MzMwMzM3ODAwMQ.GGxkYT.mjLFbdaXpks_logHLl3MDnrqI71bidILGJVu-8")
+bot.run("")
