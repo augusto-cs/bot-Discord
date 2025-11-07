@@ -1,7 +1,8 @@
+import discord
 from discord.ext import commands, tasks
 from datetime import time
 
-intents = discord.intents.all()
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
@@ -18,8 +19,8 @@ async def info(ctx:commands.context, membro:discord.Member = None):
         membro = ctx.author
     minha_embed = discord.Embed(title=f"Informações de {membro.display_name}")
     minha_embed.add_field(name="ID do usuário", value=f"{membro.id}")
-    data_criacao = membro.created_at.striftime("%d/%m/%Y")
-    data_entrada = membro.joined_at.striftime("%d/%m/%Y")
+    data_criacao = membro.created_at.strftime("%d/%m/%Y")
+    data_entrada = membro.joined_at.strftime("%d/%m/%Y")
     minha_embed.add_field(name="Conta Criada em", value=data_criacao)
     minha_embed.add_field(name="Entrou no servidor em", value=data_entrada)
     await ctx.send(embed=minha_embed)
@@ -39,4 +40,8 @@ async def on_message(msg: discord.Message):
 @bot.event
 async def on_member_join(membro: discord.Member):
     canal_boas_vindas = bot.get_channel(1436387254049439794)
+    embed_boas_vindas = discord.Embed(title="Bem-vindo ao servidor!", description=f"Olá {membro.mention}, seja muito bem-vindo ao nosso servidor! Leia as regras e divirta-se!")
+    embed_boas_vindas.set_thumbnail(url=membro.avatar.url)
+    await canal_boas_vindas.send(embed=embed_boas_vindas)
     
+bot.run("MTQzNDY5MTI1MzMwMzM3ODAwMQ.GGxkYT.mjLFbdaXpks_logHLl3MDnrqI71bidILGJVu-8")
